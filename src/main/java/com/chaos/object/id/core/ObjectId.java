@@ -26,9 +26,11 @@ public class ObjectId {
 
     static {
         Config conf = new ConfigLoader().getConf();
+
         machineId = conf.getLong("machine.id"); // 8 bits
-        businessId = conf.getLong("business.id"); // 4 bits
         Preconditions.checkArgument(machineId <= maxMachineId, "exceed max machineId, max machineId [" + maxMachineId + "]");
+
+        businessId = conf.getLong("business.id"); // 4 bits
         Preconditions.checkArgument(businessId <= maxBusinessId, "exceed max businessId, max businessId [" + maxBusinessId + "]");
     }
 

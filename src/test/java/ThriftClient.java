@@ -11,12 +11,13 @@ import org.apache.thrift.transport.TTransport;
  */
 public class ThriftClient {
     public static void main(String[] args) throws TException {
-        TTransport transport = new TFramedTransport(new TSocket("localhost", 39987), 15000);
-        TProtocol protocol = new TCompactProtocol(transport);
-        transport.open();
-        ObjectIdGenerator.Client client = new ObjectIdGenerator.Client(protocol);
-
-        System.out.println(client.getObjectId());
-        transport.close();
+        while (true) {
+            TTransport transport = new TFramedTransport(new TSocket("localhost", 39987), 15000);
+            TProtocol protocol = new TCompactProtocol(transport);
+            transport.open();
+            ObjectIdGenerator.Client client = new ObjectIdGenerator.Client(protocol);
+            System.out.println(client.getObjectId());
+            transport.close();
+        }
     }
 }

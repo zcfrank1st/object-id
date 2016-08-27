@@ -5,6 +5,7 @@ import com.google.common.base.Preconditions;
 import com.typesafe.config.Config;
 
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by zcfrank1st on 8/24/16.
@@ -36,12 +37,18 @@ public class ObjectId {
     }
 
     private long getSerialNumber () { //  10 bits
-        long c = num.getAndIncrement();
-        if (c != maxSerialNumber) {
-            return c;
+        ReentrantLock lock = new ReentrantLock();
+        lock.lock();
+        try {
+            long c = num.getAndIncrement();
+            if (c != maxSerialNumber) {
+                return c;
+            }
+            num.set(0);
+            return maxSerialNumber;
+        } finally {
+            lock.unlock();
         }
-        num.set(0);
-        return maxSerialNumber;
     }
 
     public long getObjectId () {

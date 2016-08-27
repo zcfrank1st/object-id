@@ -45,7 +45,7 @@ public class ObjectId {
         return maxSerialNumber;
     }
 
-    public long getObjectId () throws SocketException {
+    public long getObjectId () {
         return getTimestamp() << (machineBits + businessBits + serialBits) |
                 machineId << (businessBits + serialBits) |
                 businessId << serialBits |

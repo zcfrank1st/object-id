@@ -1,6 +1,7 @@
 package com.chaos.object.id.server;
 
 import com.chaos.object.id.util.ConfigLoader;
+import com.google.inject.Inject;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.core.StandardContext;

@@ -9,8 +9,22 @@ import redis.clients.jedis.JedisCluster;
 public class MachineIdProcessor {
     final private static String OBJECT_ID = "OBJECT_ID";
 
-    // TODO init jedis cluster
-    final private static JedisCluster jedisCluster = null;
+    private static JedisCluster jedisCluster;
+
+    private MachineIdProcessor () {
+        throw new RuntimeException("cannot new object, use getInstance");
+    }
+
+    public static MachineIdProcessor createInstance() {
+        String clusterHostsPorts = new ConfigLoader().getConf().getString("redis.clusters");
+        if (StringUtils.isEmpty(clusterHostsPorts)) {
+            return null;
+        }
+
+        // TODO init jedisCluster
+
+        return new MachineIdProcessor();
+    }
 
     public long applyForMachineId(String uniqueTag) {
         String oldId = getBindedMachineId(uniqueTag);

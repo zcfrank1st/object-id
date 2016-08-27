@@ -1,6 +1,7 @@
 package com.chaos.object.id.core;
 
 import com.chaos.object.id.util.ConfigLoader;
+import com.chaos.object.id.util.MachineIdProcessor;
 import com.google.common.base.Preconditions;
 import com.typesafe.config.Config;
 
@@ -24,10 +25,17 @@ public class ObjectId {
     final private static long machineId;
     final private static long businessId;
 
+    final private static MachineIdProcessor machineIdProcessor = MachineIdProcessor.createInstance();
+
     static {
         Config conf = new ConfigLoader().getConf();
 
-        machineId = conf.getLong("machine.id"); // 8 bits
+        if (null == machineIdProcessor) {
+            machineId = conf.getLong("machine.id"); // 8 bits
+        } else {
+            // TODO unique key
+            machineId = machineIdProcessor.applyForMachineId();
+        }
         Preconditions.checkArgument(machineId <= maxMachineId, "exceed max machineId, max machineId [" + maxMachineId + "]");
 
         businessId = conf.getLong("business.id"); // 4 bits

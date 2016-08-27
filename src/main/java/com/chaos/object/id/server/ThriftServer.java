@@ -3,6 +3,7 @@ package com.chaos.object.id.server;
 import com.chaos.object.id.server.service.ObjectIdService;
 import com.chaos.object.id.server.service.gen.ObjectIdGenerator;
 import com.chaos.object.id.util.ConfigLoader;
+import com.google.inject.Inject;
 import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.server.TNonblockingServer;
 import org.apache.thrift.server.TServer;

@@ -11,18 +11,18 @@ import java.util.concurrent.locks.ReentrantLock;
  * Created by zcfrank1st on 8/24/16.
  */
 public class ObjectId {
-    private static AtomicLong num = new AtomicLong(0);
+    final private static ReentrantLock lock = new ReentrantLock();
 
-    private static long businessBits = 4L;
-    private static long serialBits = 10L;
-    private static long machineBits = 8L;
+    final private static long businessBits = 4L;
+    final private static long serialBits = 10L;
+    final private static long machineBits = 8L;
 
-    private static long maxBusinessId = ~(-1 << businessBits);
-    private static long maxSerialNumber = ~(-1 << serialBits);
-    private static long maxMachineId = ~(-1 << machineBits);
+    final private static long maxBusinessId = ~(-1 << businessBits);
+    final private static long maxSerialNumber = ~(-1 << serialBits);
+    final private static long maxMachineId = ~(-1 << machineBits);
 
-    private static long machineId;
-    private static long businessId;
+    final private static long machineId;
+    final private static long businessId;
 
     static {
         Config conf = new ConfigLoader().getConf();
@@ -32,12 +32,13 @@ public class ObjectId {
         Preconditions.checkArgument(businessId <= maxBusinessId, "exceed max businessId, max businessId [" + maxBusinessId + "]");
     }
 
+    private static AtomicLong num = new AtomicLong(0);
+
     private long getTimestamp () { // 42 bits
         return System.currentTimeMillis();
     }
 
     private long getSerialNumber () { //  10 bits
-        ReentrantLock lock = new ReentrantLock();
         lock.lock();
         try {
             long c = num.getAndIncrement();

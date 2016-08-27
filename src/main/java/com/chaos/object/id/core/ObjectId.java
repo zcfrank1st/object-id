@@ -4,7 +4,6 @@ import com.chaos.object.id.util.ConfigLoader;
 import com.google.common.base.Preconditions;
 import com.typesafe.config.Config;
 
-import java.net.SocketException;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**

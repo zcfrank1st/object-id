@@ -1,4 +1,4 @@
-package com.chaos.object.id.server;
+package com.chaos.object.id.server.service;
 
 import com.chaos.object.id.core.ObjectId;
 
@@ -17,7 +17,7 @@ import java.io.IOException;
         name = "Object id servlet",
         urlPatterns = {"/object/id"}
 )
-public class TomcatObjectIdServlet extends HttpServlet {
+public class ObjectIdServlet extends HttpServlet {
     private final static ObjectId objectId = new ObjectId();
 
     @Override

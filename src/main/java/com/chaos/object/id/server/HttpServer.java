@@ -1,5 +1,6 @@
 package com.chaos.object.id.server;
 
+import com.chaos.object.id.util.ConfigLoader;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.core.StandardContext;
@@ -13,21 +14,23 @@ import java.io.File;
 /**
  * Created by zcfrank1st on 8/27/16.
  */
-public class TomcatServer {
+public class HttpServer {
+    final private static String port = new ConfigLoader().getConf().getString("http.server.port");
+
     public static void main(String[] args) throws ServletException, LifecycleException {
-        String webappDirLocation = "src/main/resources/";
+        String webAppDirLocation = "src/main/resources/";
         Tomcat tomcat = new Tomcat();
 
         //The port that we should run on can be set into an environment variable
         //Look for that variable and default to 8080 if it isn't there.
         String webPort = System.getenv("PORT");
         if(webPort == null || webPort.isEmpty()) {
-            webPort = "8080";
+            webPort = port;
         }
 
         tomcat.setPort(Integer.valueOf(webPort));
 
-        StandardContext ctx = (StandardContext) tomcat.addWebapp("/", new File(webappDirLocation).getAbsolutePath());
+        StandardContext ctx = (StandardContext) tomcat.addWebapp("/", new File(webAppDirLocation).getAbsolutePath());
 
         // Declare an alternative location for your "WEB-INF/classes" dir
         // Servlet 3.0 annotation will work

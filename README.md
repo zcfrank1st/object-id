@@ -1,7 +1,11 @@
 Object Id
 =====
 
-refer to twitter snowflake, currently a simple jar unique key generator
+refer to twitter snowflake
+
+* a restful service
+* a thrift service
+* a jar service
 
 #### TODO
 

@@ -7,3 +7,4 @@ refer to twitter snowflake, currently a simple jar unique key generator
 
 1. add zookeeper to manage machine ids
 2. add logs
+3. add exception handler

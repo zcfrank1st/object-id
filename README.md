@@ -5,5 +5,5 @@ refer to twitter snowflake, currently a simple jar unique key generator
 
 #### TODO
 
-1. add rpc server to make it a rpc service
-2. add zookeeper to manage machine ids
+1. add zookeeper to manage machine ids
+2. add logs

@@ -16,10 +16,6 @@ public class MachineIdProcessor {
 
     private static JedisCluster jedisCluster;
 
-    private MachineIdProcessor () {
-        throw new RuntimeException("cannot new object, use getInstance");
-    }
-
     public static MachineIdProcessor createInstance() {
         if (jedisCluster != null) {
             return new MachineIdProcessor();

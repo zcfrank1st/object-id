@@ -5,6 +5,9 @@ import com.chaos.object.id.util.MachineIdProcessor;
 import com.google.common.base.Preconditions;
 import com.typesafe.config.Config;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -33,8 +36,12 @@ public class ObjectId {
         if (null == machineIdProcessor) {
             machineId = conf.getLong("machine.id"); // 8 bits
         } else {
-            // TODO unique key /etc/machine-id
-            machineId = machineIdProcessor.applyForMachineId();
+            // use unique key /etc/machine-id
+            try {
+                machineId = machineIdProcessor.applyForMachineId(Files.readAllLines(Paths.get("/etc/machine-id")).get(0));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         Preconditions.checkArgument(machineId <= maxMachineId, "exceed max machineId, max machineId [" + maxMachineId + "]");
 

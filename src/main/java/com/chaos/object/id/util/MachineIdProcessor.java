@@ -1,6 +1,5 @@
 package com.chaos.object.id.util;
 
-import org.apache.catalina.Host;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import redis.clients.jedis.HostAndPort;

@@ -33,7 +33,7 @@ public class ObjectId {
         if (null == machineIdProcessor) {
             machineId = conf.getLong("machine.id"); // 8 bits
         } else {
-            // TODO unique key
+            // TODO unique key /etc/machine-id
             machineId = machineIdProcessor.applyForMachineId();
         }
         Preconditions.checkArgument(machineId <= maxMachineId, "exceed max machineId, max machineId [" + maxMachineId + "]");

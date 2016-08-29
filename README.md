@@ -8,12 +8,13 @@ refer to twitter snowflake
 * a thrift service
 * a jar service
 
-#### TODO
 
-1. machine ids =>
+
+* machine ids =>
  
     `start get id if none generate id then bind id || default 0` => need redis cluster
-    
-2. add logs
-3. add exception handler
-4. use guice
+ 
+TODO
+
+1. add logs
+2. add exception handler

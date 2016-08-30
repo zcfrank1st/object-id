@@ -3,7 +3,6 @@ package com.chaos.object.id.server;
 import com.chaos.object.id.server.service.ObjectIdService;
 import com.chaos.object.id.server.service.gen.ObjectIdGenerator;
 import com.chaos.object.id.util.ConfigLoader;
-import com.google.inject.Inject;
 import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.server.TNonblockingServer;
 import org.apache.thrift.server.TServer;
@@ -23,8 +22,6 @@ public class ThriftServer {
         tnbArgs.processor(new ObjectIdGenerator.Processor<>(new ObjectIdService()));
         tnbArgs.transportFactory(new TFramedTransport.Factory());
         tnbArgs.protocolFactory(new TCompactProtocol.Factory());
-
-        // 使用非阻塞式IO，服务端和客户端需要指定TFramedTransport数据传输的方式
         TServer server = new TNonblockingServer(tnbArgs);
         server.serve();
     }

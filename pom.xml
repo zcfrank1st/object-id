@@ -6,7 +6,7 @@
 
     <groupId>com.chaos</groupId>
     <artifactId>object.id</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <dependencies>
         <dependency>
@@ -43,12 +43,6 @@
             <groupId>org.nanohttpd</groupId>
             <artifactId>nanohttpd</artifactId>
             <version>2.2.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hashids</groupId>
-            <artifactId>hashids</artifactId>
-            <version>1.0.1</version>
         </dependency>
     </dependencies>
 
